@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="Lawyer" default="main" basedir=".">
+
+	<property file="ant.properties" />
+
+	<property name="bin" value="${basedir}/bin" />
+	<property name="src" value="${basedir}/src" />
+	<property name="conf" value="${basedir}/conf" />
+	<property name="dist" value="${basedir}/dist" />
+	<property name="docs" value="${basedir}/docs" />
+	<property name="lib" value="${basedir}/lib" />
+	<property name="jsp" value="${basedir}/jsp" />
+
+	<path id="compile.classpath">
+	    <fileset dir="${lib}" includes="**/*.jar"/>
+	</path>
+	
+	<target name="check-tomcat" unless="tomcat.dir">
+
+		<fail>
+			Property "tomcat.dir" is not set. Please use the file
+			".ant.properties" in this directory ${basedir} to
+			set this property. It must point to the directory which
+			contains the following directory: "bin", "conf", "webapps"
+			etc.
+		</fail>
+
+	</target>
+
+	
+	<target name="check-environment">
+
+		<antcall target="check-tomcat" />
+
+	</target>
+
+	<target name="init" depends="check-environment">
+
+		<echo message="java.home = ${java.home}" />
+		<echo message="tomcat.dir = ${tomcat.dir}" />
+		
+	</target>
+
+	<!-- Delete all built files -->
+	<target name="clean" depends="init">
+		<delete dir="${bin}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<!-- Compile everything -->
+	<target name="compile" depends="init">
+	    <mkdir dir="${bin}"/>
+		<javac srcdir="${src}" destdir="${bin}" classpathref="compile.classpath" debug="true"/>
+		<copy file="${src}/WEB-INF/web.xml" todir="${bin}/WEB-INF"/>
+		<copy todir="${bin}">
+			<fileset dir="${src}" includes="**/*.properties"/>
+		</copy>
+		<copy todir="${bin}">
+			<fileset dir="${conf}" includes="empire.properties" />		
+			<fileset dir="${conf}" includes="lawyer.properties" />
+			<fileset dir="${conf}" includes="log4j.properties" />
+			<fileset dir="${conf}" includes="empire.apt.config" />
+		</copy>
+	</target>
+	
+	<!-- War -->
+	<target name="war" depends="compile">
+		<mkdir dir="${dist}"/>
+		<war destfile="${dist}/${warname}" webxml="${bin}/WEB-INF/web.xml">
+	      <zipfileset dir="${jsp}">
+	      	<include name="css/**/*" />
+	       	<include name="images/**/*" />
+	      	<include name="js/**/*" />
+	      	<include name="schemas/**/*" />
+	      	<include name="**/*.jsp" />
+	      	<include name="**/*.css" />
+	      	<include name="**/*.xsd" />
+	      	<include name="**/*.html" />
+	      </zipfileset>
+		  <webinf dir="${bin}/WEB-INF">
+		    <include name="xslt/*"/>
+		  </webinf>
+	      <classes dir="${bin}">
+	        <include name="**/*.class"/>
+	      	<include name="**/*.properties"/>  
+	      	<include name="**/*.config"/>
+	      </classes>
+		  <lib dir="${lib}">
+		  	<exclude name="servlet-api.jar" />
+		  	<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/c3po">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/clark-parsia">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/dbcp">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/exist">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/guice">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/javassist">
+		   	<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/jena">
+		  	<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/jpa">
+		    <include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/junit">
+			<include name="*.jar"/>
+		  </lib>
+		  <lib dir="${lib}/sesame">
+			<include name="*.jar"/>
+		  </lib>
+		  
+	    </war>
+	</target>
+	
+	<!-- Make distribution -->
+	<target name="dist" depends="war">
+		<mkdir dir="${dist}/docs"/>
+		<copy todir="${dist}/docs">
+			<fileset dir="${docs}" includes="**/*" />		
+		</copy>
+		<mkdir dir="${dist}/conf"/>
+		<copy todir="${dist}/conf">
+			<fileset dir="${conf}" includes="empire.properties" />		
+			<fileset dir="${conf}" includes="lawyer.properties" />
+			<fileset dir="${conf}" includes="log4j.properties" />
+			<fileset dir="${conf}" includes="empire.apt.config" />
+		</copy>
+	</target>
+
+	<!-- Deploy  -->
+	<target name="deploy" depends="dist">
+		<copy todir="${tomcat.dir}/webapps">
+			<fileset dir="${dist}" includes="${warname}" />
+		</copy>
+	</target>
+
+	<target name="main" depends="deploy" />	
+</project>

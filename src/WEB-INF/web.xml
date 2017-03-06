@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   
+   <servlet>
+      <servlet-name>ActController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.ActController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ActMetadataController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.ActMetadataController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ActsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.ActsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AttachmentController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.AttachmentController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AttachmentsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.AttachmentsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>BylawsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.BylawsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>CaseLawController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.CaseLawController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ContentController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.ContentController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>CSSController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.CSSController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ExpertOpinionsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.ExpertOpinionsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>NormElementsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.NormElementsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>NormMetadataController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.NormMetadataController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>NormsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.NormsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PagerScriptController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.PagerScriptController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>SearchController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.SearchController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>SearchResultsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.SearchResultsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>TOCController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.TOCController</servlet-class>
+   </servlet>
+   
+   <filter>
+      <filter-name>Set Character Encoding</filter-name>
+      <filter-class>rs.ac.uns.ftn.informatika.legal.lawyer.controller.SetCharacterEncodingFilter</filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+      <init-param>
+         <param-name>ignore</param-name>
+         <param-value>true</param-value>
+      </init-param>	
+   </filter>
+   
+   <servlet-mapping>
+      <servlet-name>ActController</servlet-name>
+      <url-pattern>/Act</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ActMetadataController</servlet-name>
+      <url-pattern>/ActMetadata</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ActsController</servlet-name>
+      <url-pattern>/Acts</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>AttachmentsController</servlet-name>
+      <url-pattern>/Attachments</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>AttachmentController</servlet-name>
+      <url-pattern>/Attachment</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>BylawsController</servlet-name>
+      <url-pattern>/Bylaws</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>CaseLawController</servlet-name>
+      <url-pattern>/CaseLaw</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ContentController</servlet-name>
+      <url-pattern>/Content</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>CSSController</servlet-name>
+      <url-pattern>/CSS</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ExpertOpinionsController</servlet-name>
+      <url-pattern>/ExpertOpinions</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>NormElementsController</servlet-name>
+      <url-pattern>/NormElements</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>NormMetadataController</servlet-name>
+      <url-pattern>/NormMetadata</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>NormsController</servlet-name>
+      <url-pattern>/Norms</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PagerScriptController</servlet-name>
+      <url-pattern>/PagerScript</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>SearchController</servlet-name>
+      <url-pattern>/Search</url-pattern>
+   </servlet-mapping>
+      
+   <servlet-mapping>
+      <servlet-name>SearchResultsController</servlet-name>
+      <url-pattern>/SearchResults</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>TOCController</servlet-name>
+      <url-pattern>/TOC</url-pattern>
+   </servlet-mapping>
+   
+   <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+   </filter-mapping>
+  
+   <welcome-file-list>
+   		<welcome-file>Search</welcome-file>
+   </welcome-file-list>
+   
+   <!-- 
+   <error-page>
+		<exception-type>
+			java.lang.Throwable
+		</exception-type>
+		<location>/error.jsp</location>
+   </error-page>
+   <error-page>
+   		<error-code>404</error-code>
+   		<location>/404.jsp</location>
+   </error-page> 
+    -->
+   
+</web-app>
